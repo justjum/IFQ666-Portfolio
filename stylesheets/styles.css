@@ -1,0 +1,23 @@
+.navbar {
+    background-color: rgb(193, 223, 193);
+    padding: 20px;
+    width: 100%;
+}
+
+a:hover {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.active {
+    padding: 10px;
+    background-color: rgb(253, 209, 151);
+    font-size:larger;
+    width: 100px;
+    border-radius: 30px;
+    font-weight: bold
+}
+
+h3 {
+    color:blueviolet;
+}
