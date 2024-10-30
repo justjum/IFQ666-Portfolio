@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import getIP from '../api/ip-api';
+import getWeather from '../api/weather-api';
 
 export default function Weather() {
     const [weather, setWeather] = useState(null);
-    const [ip, setIp] = useState("")
-
-    const apikey = import.meta.env.VITE_WEATHER_API;
+    const [ip, setIp] = useState(null)
 
     useEffect(() => {
         async function ipAPI(){
@@ -15,29 +14,33 @@ export default function Weather() {
         ipAPI();
     }, [])
 
-    const myip =  '115.70.185.234'
-
     useEffect(() => {
-        async function getWeather() {
-            if (ip != "") {
-                try {
-                    const response = fetch(`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${ip}`)
-                    const data = await (await response).json();
-                    console.log(data)
-                    setWeather(data)
-                } catch (error) {
-                    console.error(error)
-                }
-            }
+        async function weatherAPI(){
+            const res = await getWeather(ip)
+            setWeather(res)
         }
-        getWeather();
+        weatherAPI()
     }, [ip])
 
+    function WeatherWidget({ location, temperature, icon }) {
+        return <div className='weather-widget'>
+            <div>
+                <p>{location}</p>
+                <p>{temperature}&deg;C</p>
+            </div>
+            <img src={icon} alt="" />
+        </div>
+    }
 
     return <>
-        {ip == "" ? 'loading location': (
+        {ip == "" ? <p>'loading location'</p>: (
             <>
-             {weather ? weather.location.name: ""}
+             {weather != null ? <WeatherWidget 
+                                    location={weather.location} 
+                                    temperature={weather.temp} 
+                                    icon={weather.icon}
+                                />
+                : ""}
             </>
         )}
     </>
