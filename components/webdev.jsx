@@ -1,5 +1,6 @@
 import getGit from "../api/github-api"
 import { useState, useEffect } from 'react'
+import ProjectCard from "./projectcard";
 
 export default function WebDev() {
     const [projects, setProjects] = useState(null)
@@ -16,13 +17,16 @@ export default function WebDev() {
  
 
     return <>
-        <h4>WebDev Placeholder</h4>
-        {projects != null ? (
-            projects.map((project) => {
-                return <>
-                    <p>{project.name}</p>
-                </>
-            })
-        ): ""}
+        <h2>Web Development</h2>
+        <div className="projects">
+            {projects != null ? (
+                projects.map((project) => {
+                    return <>
+                        <ProjectCard project={project} />
+                    </>
+                })
+            ): ""}
+        </div>
+
     </>
 }

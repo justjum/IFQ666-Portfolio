@@ -1,24 +1,26 @@
-/* .navbar {
-    background-color: rgb(193, 223, 193);
-    
-} */
-
-/* .navlinks {
-    display: flex;
-
-}
- */
 
 .content {
     height: 100vh;
-}
-
-h3 {
-    color:blueviolet;
 }
 
 .weather-widget {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    min-width: 300px;
+    margin: 5px;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.icon {
+    max-width: 40px;
 }
